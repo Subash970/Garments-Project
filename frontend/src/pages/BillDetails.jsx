@@ -45,41 +45,43 @@ const BillDetails = () => {
     <>
       <div className="p-4">
         <p className="h6 my-3 text-danger">{msg}</p>
-        <div className="w-100 my-4 d-flex justify-content-end">
-          <i
-            className="fas fa-trash bill-delete-icon rounded-circle"
-            title="Delete this bill"
-            onClick={handleDeletePopup}
-          ></i>
-        </div>
-        {/*  */}
-        <div
-          className={popup ? "bill-delete-popup" : "bill-delete-popup d-none"}
-        >
-          <div className="bill-delete-container border rounded bg-white shadow shadow-lg p-3 pt-4">
-            <div className="h5">Delete</div>
-            <p>Are you sure you want to delete this bill...?</p>
-            <div className="mt-5 d-flex justify-content-around">
-              <p></p>
-              <p></p>
-              <p></p>
-              <p></p>
-              <p></p>
-              <button
-                className="btn border mx-2 cancel-btn rounded-4 px-4"
-                onClick={handleDeletePopup}
-              >
-                Cancel
-              </button>
-              <form>
-                <button className="btn btn-danger rounded-4 px-4">
-                  Delete
+        {bill && (
+          <div className="w-100 my-4 d-flex justify-content-end">
+            <i
+              className="fas fa-trash bill-delete-icon rounded-circle"
+              title="Delete this bill"
+              onClick={handleDeletePopup}
+            ></i>
+          </div>
+        )}
+        {bill && (
+          <div
+            className={popup ? "bill-delete-popup" : "bill-delete-popup d-none"}
+          >
+            <div className="bill-delete-container border rounded bg-white shadow shadow-lg p-3 pt-4">
+              <div className="h5">Delete</div>
+              <p>Are you sure you want to delete this bill...?</p>
+              <div className="mt-5 d-flex justify-content-around">
+                <p></p>
+                <p></p>
+                <p></p>
+                <p></p>
+                <p></p>
+                <button
+                  className="btn border mx-2 cancel-btn rounded-4 px-4"
+                  onClick={handleDeletePopup}
+                >
+                  Cancel
                 </button>
-              </form>
+                <form>
+                  <button className="btn btn-danger rounded-4 px-4">
+                    Delete
+                  </button>
+                </form>
+              </div>
             </div>
           </div>
-        </div>
-        {/*  */}
+        )}
         <div className="d-flex justify-content-center">
           {bill ? (
             <div>
