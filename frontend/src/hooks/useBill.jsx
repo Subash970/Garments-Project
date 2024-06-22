@@ -11,7 +11,7 @@ export const useBill = () => {
     setloading(true);
     try {
       await axios.post(
-        "http://localhost:8000/bill/new-bill",
+        `${process.env.REACT_APP_API}/bill/new-bill`,
         { items, company },
         { headers: { authorization: localStorage.getItem("token") } }
       );
