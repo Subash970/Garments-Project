@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import numberToWords from "../hooks/useAmountToWords";
 
 const BillDetails = () => {
   const { _id } = useParams();
@@ -197,7 +198,9 @@ const BillDetails = () => {
                     <div className="w-50 d-flex flex-column">
                       <div className="p-2">
                         <strong>Amount in words : </strong>
-                        <span></span>
+                        <span>
+                          {numberToWords(Math.floor(bill.ToatalInvoiceAmount))}
+                        </span>
                       </div>
                       <div className="p-2 border mt-auto">
                         <strong>Terms and conditions : </strong>
