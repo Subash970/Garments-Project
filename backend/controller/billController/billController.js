@@ -71,8 +71,20 @@ const companyDetails = async (req, res) => {
   }
 };
 
+const deleteBill = async (req, res) => {
+  const user = req.user;
+  const { _id } = req.params;
+  try {
+    await Bill.findOneAndDelete({ user, _id }, { _id });
+    res.status(200).json();
+  } catch (err) {
+    res.status(400).json({ msg: err.message });
+  }
+};
+
 module.exports = {
   newBill,
   getCompanies,
   companyDetails,
+  deleteBill,
 };

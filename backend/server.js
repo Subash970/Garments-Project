@@ -62,6 +62,7 @@ app.post(
 app.post("/bill/new-bill", requireAuth, billController.newBill);
 app.get("/bill/getCompanies", requireAuth, billController.getCompanies);
 app.post("/bill/companyDetails", requireAuth, billController.companyDetails);
+app.get("/bill/delete/:_id", requireAuth, billController.deleteBill);
 
 //routes
 app.get("/user/bills", requireAuth, controller.userBills);

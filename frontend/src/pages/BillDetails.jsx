@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { useDeleteBill } from "../hooks/useDeleteBill";
 import numberToWords from "../hooks/useAmountToWords";
 
 const BillDetails = () => {
@@ -8,6 +9,7 @@ const BillDetails = () => {
   const [bill, setBill] = useState();
   const [msg, setMsg] = useState(null);
   const [loading, setLoading] = useState(false);
+  const { deleteBill, deleteLoading, deleteMsg } = useDeleteBill();
 
   const getBill = useCallback(async () => {
     setMsg(null);
@@ -40,15 +42,18 @@ const BillDetails = () => {
       setPopup(true);
     }
   };
-  const handleDelete = (e) => {
+
+  const handleDelete = async (e) => {
     e.preventDefault();
-    alert("this feature is not enabled yet")
-  }
+    deleteBill(_id);
+    setPopup(false);
+  };
 
   return (
     <>
       <div className="p-4">
         <p className="h6 my-3 text-danger">{msg}</p>
+        <p className="h6 my-3 text-danger">{deleteMsg}</p>
         {bill && (
           <div className="w-100 my-4 d-flex justify-content-end">
             <i
@@ -78,7 +83,10 @@ const BillDetails = () => {
                   Cancel
                 </button>
                 <form>
-                  <button className="btn btn-danger rounded-4 px-4" onClick={handleDelete}>
+                  <button
+                    className="btn btn-danger rounded-4 px-4"
+                    onClick={handleDelete}
+                  >
                     Delete
                   </button>
                 </form>
@@ -320,6 +328,7 @@ const BillDetails = () => {
       </div>
 
       {loading && <div id="loading"></div>}
+      {deleteLoading && <div id="loading"></div>}
     </>
   );
 };
