@@ -262,3 +262,24 @@ table tr td {
   width: 450px;
   height: 200px;
 }
+
+.print-icon {
+  background-color: #ddd;
+  color: black;
+  height: 40px;
+  width: 40px;
+  display: grid;
+  place-items: center;
+  transition: 0.3s;
+}
+
+.print-icon:hover {
+  color: white;
+  background-color: green;
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}

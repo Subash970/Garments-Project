@@ -49,13 +49,20 @@ const BillDetails = () => {
     setPopup(false);
   };
 
+  const handlePrint = () => {};
+
   return (
     <>
       <div className="p-4">
         <p className="h6 my-3 text-danger">{msg}</p>
         <p className="h6 my-3 text-danger">{deleteMsg}</p>
         {bill && (
-          <div className="w-100 my-4 d-flex justify-content-end">
+          <div className="w-100 my-4 d-flex justify-content-between no-print">
+            <i
+              className="fa fa-print print-icon rounded-circle"
+              title="Print this bill"
+              onClick={handlePrint}
+            ></i>
             <i
               className="fas fa-trash bill-delete-icon rounded-circle"
               title="Delete this bill"
@@ -213,7 +220,8 @@ const BillDetails = () => {
                       <div className="p-2">
                         <strong>Amount in words : </strong>
                         <span>
-                          {numberToWords(Math.floor(bill.ToatalInvoiceAmount))}
+                          {numberToWords(Math.floor(bill.ToatalInvoiceAmount))}{" "}
+                          Rupees
                         </span>
                       </div>
                       <div className="p-2 border mt-auto">
@@ -306,7 +314,7 @@ const BillDetails = () => {
                         </table>
                       </div>
                     </div>
-                    <div className="w-50 text-center">
+                    <div className="w-50 text-center border">
                       <p className="h4 py-5">
                         For{" "}
                         <strong>

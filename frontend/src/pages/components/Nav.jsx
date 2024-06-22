@@ -83,7 +83,7 @@ const Nav = () => {
       </div>
 
       <nav
-        className="position-fixed h-100 border bg-dark px-3 py-3"
+        className="position-fixed h-100 border bg-dark px-3 py-3 no-print"
         style={{ left: Nav ? "-250px" : 0 }}
       >
         <a href="/">

@@ -5,7 +5,7 @@ const Header = () => {
 
   return (
     <>
-      <header className="navbar mx-4 border-bottom mt-3">
+      <header className="navbar mx-4 border-bottom mt-3 no-print">
         <p className="h3" style={{ maxWidth: "450px" }}>
           Dashboard
         </p>
