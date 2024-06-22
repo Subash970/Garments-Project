@@ -40,6 +40,10 @@ const BillDetails = () => {
       setPopup(true);
     }
   };
+  const handleDelete = (e) => {
+    e.preventDefault();
+    alert("this feature is not enabled yet")
+  }
 
   return (
     <>
