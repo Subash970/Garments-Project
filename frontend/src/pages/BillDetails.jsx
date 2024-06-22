@@ -78,7 +78,7 @@ const BillDetails = () => {
                   Cancel
                 </button>
                 <form>
-                  <button className="btn btn-danger rounded-4 px-4">
+                  <button className="btn btn-danger rounded-4 px-4" onClick={handleDelete}>
                     Delete
                   </button>
                 </form>
