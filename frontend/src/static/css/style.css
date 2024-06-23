@@ -282,4 +282,8 @@ table tr td {
   .no-print {
     display: none !important;
   }
+
+  #main-bill-container {
+    width: 120vw !important;
+  }
 }
