@@ -12,19 +12,19 @@ const getUserCompanies = async (req, res) => {
     const companies = await UserCompanies.find({ user }).select("company");
     res.status(200).json({ companies });
   } catch (err) {
-    res.status(400).json({ msg: "No Companies found" });
+    res.status(404).json({ msg: "No Companies found" });
   }
 };
 
 const userDetail = async (req, res) => {
   const { user } = req.params;
   if (user !== req.user) {
-    res.status(400).json({ msg: "Invalid URL. please use a valid URL" });
+    res.status(403).json({ msg: "Invalid URL. please use a valid URL" });
   } else {
     try {
       const userDetail = await UserCredentials.find({ user: req.user });
       if (!userDetail) {
-        res.status(400).json({ msg: "You did'nt add your credentials yet." });
+        res.status(404).json({ msg: "You did'nt add your credentials yet." });
         return;
       }
       res.status(200).json({ userDetail: userDetail[0] });
@@ -39,7 +39,6 @@ const getCompanies = async (req, res) => {
     const companyName = await UserCompanies.find({ user: req.user }).select(
       "company"
     );
-    console.log(companyName);
     res.status(200).json({ companyName });
   } catch (err) {
     res.status(400).json({ msg: "an error occured. please try again" });
@@ -73,7 +72,7 @@ const singleBill = async (req, res) => {
       return;
     }
     res
-      .status(400)
+      .status(403)
       .json({ msg: "Invalid url or you are not allowed to see this page" });
   } catch (err) {
     res.status(400).json({ msg: "an error occured. please try again" });
@@ -90,7 +89,7 @@ const singleCompany = async (req, res) => {
     }).select("company");
     if (!singleCompany) {
       res
-        .status(400)
+        .status(403)
         .json({ msg: "Invalid Url or You are not allowed to see this page" });
       return;
     }

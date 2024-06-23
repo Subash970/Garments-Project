@@ -8,16 +8,16 @@ const AddCredentials = async (req, res) => {
   if (!userCheck) {
     try {
       await userCredentials.AddCredentials(data);
-      res.status(200).json({ msg: "Credentials added" });
+      res.status(201).json({ msg: "Credentials added" });
     } catch (err) {
-      res.status(401).json({ msg: err.message });
+      res.status(400).json({ msg: err.message });
     }
   } else {
     try {
       await userCredentials.UpdateCredentials(data);
-      res.status(200).json({ msg: "Credentials updated" });
+      res.status(202).json({ msg: "Credentials updated" });
     } catch (err) {
-      res.status(401).json({ msg: err.message });
+      res.status(400).json({ msg: err.message });
     }
   }
 };
@@ -40,9 +40,9 @@ const AddCompanies = async (req, res) => {
       return;
     }
     await userCompanies.create(data);
-    res.status(200).json({ msg: "Company added" });
+    res.status(201).json({ msg: "Company added" });
   } catch (err) {
-    res.status(401).json({ msg: "an error occured. please try again" });
+    res.status(400).json({ msg: "an error occured. please try again" });
   }
 };
 
@@ -66,7 +66,7 @@ const EditCompany = async (req, res) => {
       { $set: updateFields },
       { new: true, useFindAndModify: false }
     );
-    res.status(200).json({ company: userCompany });
+    res.status(202).json({ company: userCompany });
   } catch (err) {
     res.status(400).json({ msg: err.message });
   }

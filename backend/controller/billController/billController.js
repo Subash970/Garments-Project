@@ -37,7 +37,7 @@ const newBill = async (req, res) => {
   };
   try {
     await Bill.newBill(data);
-    res.status(200).json({ msg: "bill added" });
+    res.status(201).json({ msg: "bill added" });
   } catch (err) {
     res.status(400).json({ msg: err.message });
   }
@@ -62,7 +62,7 @@ const companyDetails = async (req, res) => {
       "company.CompanyName": companyName,
     }).select("company");
     if (!company) {
-      res.status(400).json({ msg: "No companies found" });
+      res.status(404).json({ msg: "No companies found" });
       return;
     }
     res.status(200).json({ company });
@@ -76,7 +76,7 @@ const deleteBill = async (req, res) => {
   const { _id } = req.params;
   try {
     await Bill.findOneAndDelete({ user, _id }, { _id });
-    res.status(200).json();
+    res.status(202);
   } catch (err) {
     res.status(400).json({ msg: err.message });
   }
