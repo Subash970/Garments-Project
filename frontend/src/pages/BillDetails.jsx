@@ -292,11 +292,11 @@ const BillDetails = () => {
                         </div>
                       </div>
                       <div
-                        className="border p-2 d-flex flex-column align-items-center"
+                        className="border d-flex flex-column align-items-center"
                         style={{ width: "33%" }}
                       >
                         <p className="h6">Bank Details</p>
-                        <p className="h4 mt-4">
+                        <p className="h4 mt-2">
                           {bill.userCredential && bill.userCredential.BankName}
                         </p>
                         <p className="h6">
@@ -329,9 +329,9 @@ const BillDetails = () => {
                           </table>
                         </div>
                       </div>
-                      <div className="w-50 text-center border">
-                        <p className="h4 py-5">
-                          For{" "}
+                      <div className="w-50 border d-flex flex-column justify-content-center align-items-center">
+                        <p className="h4">
+                          For
                           <strong>
                             {bill.userCredential &&
                               bill.userCredential.CompanyName}
