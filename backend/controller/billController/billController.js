@@ -76,7 +76,7 @@ const deleteBill = async (req, res) => {
   const { _id } = req.params;
   try {
     await Bill.findOneAndDelete({ user, _id }, { _id });
-    res.status(202);
+    res.status(200);
   } catch (err) {
     res.status(400).json({ msg: err.message });
   }
