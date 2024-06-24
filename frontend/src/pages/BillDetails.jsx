@@ -267,7 +267,7 @@ const BillDetails = () => {
                         <div className="border p-2 d-flex">
                           <strong>Total GST : </strong>
                           <span className="ms-auto">
-                            {bill.CGST + bill.SGST}
+                            {Math.floor(bill.CGST + bill.SGST)}
                           </span>
                         </div>
                         <div className="border p-2 d-flex">
