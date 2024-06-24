@@ -29,10 +29,10 @@ const newBill = async (req, res) => {
     userCredential,
     company,
     items,
-    TotalTaxableAmount,
-    SGST,
-    CGST,
-    ToatalInvoiceAmount,
+    TotalTaxableAmount: Math.floor(TotalTaxableAmount),
+    SGST: Math.floor(SGST),
+    CGST: Math.floor(CGST),
+    ToatalInvoiceAmount: Math.floor(ToatalInvoiceAmount),
     invoiceNo,
   };
   try {

@@ -247,35 +247,29 @@ const BillDetails = () => {
                         <div className="border p-2 d-flex">
                           <strong>Total Taxable Amount : </strong>
                           <span className="ms-auto">
-                            {Math.floor(bill.TotalTaxableAmount)}
+                            {bill.TotalTaxableAmount}
                           </span>
                         </div>
                         <div className="border p-2 d-flex">
                           <strong>SGST : </strong>
                           <span>2.5%</span>
-                          <span className="ms-auto">
-                            {Math.floor(bill.SGST)}
-                          </span>
+                          <span className="ms-auto">{bill.SGST}</span>
                         </div>
                         <div className="border p-2 d-flex">
                           <strong>CGST : </strong>
                           <span>2.5%</span>
-                          <span className="ms-auto">
-                            {Math.floor(bill.CGST)}
-                          </span>
+                          <span className="ms-auto">{bill.CGST}</span>
                         </div>
                         <div className="border p-2 d-flex">
                           <strong>Total GST : </strong>
                           <span className="ms-auto">
-                            {Math.floor(
-                              Math.floor(bill.CGST) + Math.floor(bill.SGST)
-                            )}
+                            {bill.CGST + bill.SGST}
                           </span>
                         </div>
                         <div className="border p-2 d-flex">
                           <strong>Total Invoice Amount : </strong>
                           <span className="ms-auto">
-                            {Math.floor(bill.ToatalInvoiceAmount)}
+                            {bill.ToatalInvoiceAmount}
                           </span>
                         </div>
                       </div>
