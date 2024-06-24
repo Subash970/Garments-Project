@@ -332,7 +332,7 @@ const BillDetails = () => {
                       <div className="w-50 border d-flex flex-column justify-content-center align-items-center">
                         <p className="h4">
                           For
-                          <strong>
+                          <strong className="px-2">
                             {bill.userCredential &&
                               bill.userCredential.CompanyName}
                           </strong>
