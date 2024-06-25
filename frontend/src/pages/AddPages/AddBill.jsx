@@ -85,6 +85,7 @@ const AddBill = () => {
   const [companies, setCompanies] = useState([]);
 
   const handleGetCompanies = async () => {
+    setCompanies("");
     try {
       const response = await axios.get(
         `${process.env.REACT_APP_API}/bill/getCompanies`,
