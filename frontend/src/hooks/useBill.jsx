@@ -28,6 +28,7 @@ export const useBill = () => {
   const getCompanies = async (companyName) => {
     setloading(true);
     setCompanyMsg(null);
+    setCompany("");
     try {
       const response = await axios.post(
         `${process.env.REACT_APP_API}/bill/companyDetails`,
