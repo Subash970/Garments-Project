@@ -79,6 +79,9 @@ const AddBill = () => {
 
   const handleCompanyDetails = (e) => {
     e.preventDefault();
+    setGstNo("");
+    setPhoneNo("");
+    setAddress("");
     getCompanies(companyName);
   };
 
