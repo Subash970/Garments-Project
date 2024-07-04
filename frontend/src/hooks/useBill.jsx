@@ -6,13 +6,13 @@ export const useBill = () => {
   const [msg, setMsg] = useState(null);
   const [companyMsg, setCompanyMsg] = useState(null);
 
-  const bill = async (items, company) => {
+  const bill = async (items, company , invoiceNo) => {
     setMsg(null);
     setloading(true);
     try {
       await axios.post(
         `${process.env.REACT_APP_API}/bill/new-bill`,
-        { items, company },
+        { items, company , invoiceNo },
         { headers: { authorization: localStorage.getItem("token") } }
       );
       window.location.href = "/";

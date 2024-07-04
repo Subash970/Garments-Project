@@ -4,6 +4,7 @@ import axios from "axios";
 
 const AddBill = () => {
   const { loading, msg, bill, company, companyMsg, getCompanies } = useBill();
+  const [ invoiceMsg , setInvoiceMsg]  = useState(null)
 
   const [companyName, setCompanyName] = useState("");
   const [gstNo, setGstNo] = useState("");
@@ -63,7 +64,7 @@ const AddBill = () => {
       PhoneNo: phoneNo,
       Address: address,
     };
-    await bill(items, company);
+    await bill(items, company , invoiceNo);
     setCompanyName("");
     setGstNo("");
     setPhoneNo("");
@@ -107,11 +108,33 @@ const AddBill = () => {
     e.target.parentElement.remove();
   };
 
+  const [invoiceNo , setInvoiceNo] = useState("")
+
+  const getInvoiceNo = async () => {
+    try {
+      const response = await axios.get(`${process.env.REACT_APP_API}/bill/invoiceNo`,
+        {headers : {authorization : localStorage.getItem("token")}})
+      setInvoiceNo(response.data.invoiceNo)
+    } catch (err) {
+      setInvoiceMsg(err.response?.data?.msg || "an error occured. please try again")
+    }
+  }
+
+  useEffect(() => {
+    getInvoiceNo()
+  } , [])
+
   return (
     <>
       <div className="m-4">
         <p className="h4 my-4">Add bills...</p>
+        <p className="my-4 text-danger">{invoiceMsg}</p>
         <form>
+        <div className="my-3">
+          <span className="h5">Bill No</span>
+          <input type="number" className="form-control" value={invoiceNo} 
+          onChange={e => setInvoiceNo(e.target.value)} />
+        </div>
           {/* CompanyDetails */}
           <p className="h5">Company Details</p>
           <div className="form-floating my-3">
