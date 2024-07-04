@@ -46,7 +46,8 @@ const getInvoiceNo = async (req , res) => {
     if(lastInvoice) {
       let invoiceNo = lastInvoice+1;
     }
-    res.status(200).json({invoiceNo })
+    console.log(invoiceNo)
+    res.status(200).json({ invoiceNo })
   } catch (err) {
     res.status(400).json()
   }
