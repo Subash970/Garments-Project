@@ -5,7 +5,6 @@ const Bill = require("../../models/bill");
 const newBill = async (req, res) => {
   const { items } = req.body;
   const { company } = req.body;
-  const { invoiceNo }  = req.body;
   const totalNumbers = [];
   const total = () => {
     items.map((item) => totalNumbers.push(item.Total));
@@ -18,6 +17,14 @@ const newBill = async (req, res) => {
   const ToatalInvoiceAmount = TotalTaxableAmount + SGST + CGST;
   const user = req.user;
   const userCredential = await UserCredentials.findOne({ user });
+  const lastInvoice = await Bill.findOne({ user })
+    .sort("-createdAt")
+    .select("invoiceNo");
+  let invoiceNo = 0;
+  if (lastInvoice) {
+    invoiceNo = lastInvoice.invoiceNo + 1;
+  }
+
   const data = {
     user,
     userCredential,
@@ -36,22 +43,6 @@ const newBill = async (req, res) => {
     res.status(400).json({ msg: err.message });
   }
 };
-
-const getInvoiceNo = async (req , res) => {
-  try {
-    const lastInvoice = await Bill.findOne({ user })
-    .sort("-createdAt")
-    .select("invoiceNo");
-    let invoiceNo = 0;
-    if(lastInvoice) {
-      let invoiceNo = lastInvoice+1;
-    }
-    console.log(invoiceNo)
-    res.status(200).json({ invoiceNo })
-  } catch (err) {
-    res.status(400).json()
-  }
-}
 
 const getCompanies = async (req, res) => {
   try {
@@ -97,5 +88,4 @@ module.exports = {
   getCompanies,
   companyDetails,
   deleteBill,
-  getInvoiceNo,
 };

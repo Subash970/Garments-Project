@@ -19,7 +19,7 @@ const dbURI = process.env.dbURI;
 const MongoDb = async () => {
   try {
     await mongoose.connect(dbURI);
-    app.listen(PORT, "0.0.0.0");
+    app.listen(PORT);
     console.log("Connection established with MongoDb");
   } catch (err) {
     setTimeout(() => {
@@ -61,7 +61,6 @@ app.post(
 //bill routes
 app.post("/bill/new-bill", requireAuth, billController.newBill);
 app.get("/bill/getCompanies", requireAuth, billController.getCompanies);
-app.get("/bill/invoiceNo", requireAuth, billController.getInvoiceNo);
 app.post("/bill/companyDetails", requireAuth, billController.companyDetails);
 app.get("/bill/delete/:_id", requireAuth, billController.deleteBill);
 
