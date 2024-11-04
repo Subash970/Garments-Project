@@ -17,10 +17,11 @@ const newBill = async (req, res) => {
   const ToatalInvoiceAmount = TotalTaxableAmount + SGST + CGST;
   const user = req.user;
   const userCredential = await UserCredentials.findOne({ user });
+
   const lastInvoice = await Bill.findOne({ user })
     .sort("-createdAt")
     .select("invoiceNo");
-  let invoiceNo = 0;
+  let invoiceNo = 1;
   if (lastInvoice) {
     invoiceNo = lastInvoice.invoiceNo + 1;
   }

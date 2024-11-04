@@ -82,11 +82,13 @@ const singleBill = async (req, res) => {
 const singleCompany = async (req, res) => {
   const user = req.user;
   const { companyName } = req.params;
+  
   try {
     const singleCompany = await UserCompanies.findOne({
       user,
       "company.CompanyName": companyName,
-    }).select("company");
+    });    
+
     if (!singleCompany) {
       res
         .status(403)
