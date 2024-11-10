@@ -5,7 +5,7 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const requireAuth = require("./middleware/requireAuth");
 
-//controller changes
+
 const controller = require("./controller/controller");
 const authController = require("./controller/authController/authController");
 const GarmentController = require("./controller/GarmentController/GarmentController");
