@@ -112,6 +112,20 @@ const AddBill = () => {
       <div className="m-4">
         <p className="h4 my-4">Add bills...</p>
         <form>
+          {/* InvoiceNo */}
+
+          <div className="form-floating my-4">
+            <input
+              className="form-control"
+              id="invoiceNo"
+              placeholder="Invoice No"
+              type="number"
+            />
+            <label htmlFor="invoiceNo">Invoice No</label>
+          </div>
+
+          {/* InvoiceNo */}
+
           {/* CompanyDetails */}
           <p className="h5">Company Details</p>
           <div className="form-floating my-3">
