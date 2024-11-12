@@ -11,7 +11,6 @@ const BillDetails = () => {
   const [loading, setLoading] = useState(false);
   const { deleteBill, deleteLoading, deleteMsg } = useDeleteBill();
 
-
   const getBill = useCallback(async () => {
     setMsg(null);
     setLoading(true);
@@ -147,7 +146,13 @@ const BillDetails = () => {
                       </div>
                       <div>
                         <strong>Invoice Date : </strong>
-                        <span>{`${bill.createdAt.slice(8,10)}-${bill.createdAt.slice(5,7)}-${bill.createdAt.slice(0,4)}`}</span>
+                        <span>{`${bill.createdAt.slice(
+                          8,
+                          10
+                        )}-${bill.createdAt.slice(5, 7)}-${bill.createdAt.slice(
+                          0,
+                          4
+                        )}`}</span>
                       </div>
                     </div>
 
@@ -229,7 +234,7 @@ const BillDetails = () => {
                           <strong>Amount in words : </strong>
                           <span>
                             {numberToWords(
-                              Math.floor(bill.TotalTaxableAmount+bill.CGST+bill.SGST)
+                              bill.TotalTaxableAmount + bill.CGST + bill.SGST
                             )}{" "}
                             Rupees
                           </span>
@@ -270,7 +275,7 @@ const BillDetails = () => {
                         <div className="border p-2 d-flex">
                           <strong>Total Invoice Amount : </strong>
                           <span className="ms-auto">
-                            {bill.TotalTaxableAmount+bill.CGST+bill.SGST}
+                            {bill.TotalTaxableAmount + bill.CGST + bill.SGST}
                           </span>
                         </div>
                       </div>
