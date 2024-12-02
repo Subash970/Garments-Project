@@ -120,6 +120,7 @@ const AddBill = () => {
               id="invoiceNo"
               placeholder="Invoice No"
               type="number"
+              value={"54"}
             />
             <label htmlFor="invoiceNo">Invoice No</label>
           </div>

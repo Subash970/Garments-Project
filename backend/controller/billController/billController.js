@@ -84,9 +84,19 @@ const deleteBill = async (req, res) => {
   }
 };
 
+const invoiceNo = async (req, res) => {
+  const user = req.user;
+
+  try {
+  } catch (err) {
+    res.status(400).json({ msg: err.message });
+  }
+};
+
 module.exports = {
   newBill,
   getCompanies,
   companyDetails,
   deleteBill,
+  invoiceNo,
 };

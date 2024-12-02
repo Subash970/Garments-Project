@@ -56,6 +56,7 @@ app.post(
   "/user/:company/edit-companies",
   requireAuth,
   GarmentController.EditCompany
+  
 );
 
 //bill routes
@@ -63,6 +64,7 @@ app.post("/bill/new-bill", requireAuth, billController.newBill);
 app.get("/bill/getCompanies", requireAuth, billController.getCompanies);
 app.post("/bill/companyDetails", requireAuth, billController.companyDetails);
 app.get("/bill/delete/:_id", requireAuth, billController.deleteBill);
+app.get("/bill/invoiceno", requireAuth, billController.invoiceNo);
 
 //routes
 app.get("/user/bills", requireAuth, controller.userBills);
