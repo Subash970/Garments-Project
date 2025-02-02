@@ -9,6 +9,10 @@ const AddBill = () => {
   const [gstNo, setGstNo] = useState("");
   const [phoneNo, setPhoneNo] = useState("");
   const [address, setAddress] = useState("");
+  const [invoiceNo, setInvoiceNo] = useState("");
+  const [invoiceErr, setInvoiceErr] = useState("");
+  const [companyErr, setCompanyErr] = useState("");
+  const [firstLoading, setFirstLoading] = useState(false);
 
   useEffect(() => {
     if (company) {
@@ -63,7 +67,7 @@ const AddBill = () => {
       PhoneNo: phoneNo,
       Address: address,
     };
-    await bill(items, company);
+    await bill(items, company, invoiceNo);
     setCompanyName("");
     setGstNo("");
     setPhoneNo("");
@@ -95,7 +99,9 @@ const AddBill = () => {
       );
       setCompanies(response.data.companies.map((c) => c.CompanyName));
     } catch (err) {
-      console.log(err);
+      setCompanyErr(
+        err.response?.data?.msg || "an error occured. please try again"
+      );
     }
   };
 
@@ -106,6 +112,25 @@ const AddBill = () => {
   const handleItemsDelete = (e) => {
     e.target.parentElement.remove();
   };
+
+  const getInvoice = async () => {
+    setFirstLoading(true);
+    try {
+      const response = await axios.get(
+        `${process.env.REACT_APP_API}/bill/invoiceno`,
+        { headers: { authorization: localStorage.getItem("token") } }
+      );
+      setInvoiceNo(response.data.invoiceNo);
+    } catch (err) {
+      setInvoiceErr(err.response?.data?.msg);
+    } finally {
+      setFirstLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    getInvoice();
+  }, []);
 
   return (
     <>
@@ -120,10 +145,14 @@ const AddBill = () => {
               id="invoiceNo"
               placeholder="Invoice No"
               type="number"
-              value={"54"}
+              value={invoiceNo}
+              onChange={(e) => setInvoiceNo(e.target.value)}
             />
             <label htmlFor="invoiceNo">Invoice No</label>
           </div>
+
+          <p className="text-danger h6">{invoiceErr}</p>
+          <p className="text-danger h6">{companyErr}</p>
 
           {/* InvoiceNo */}
 
@@ -313,6 +342,7 @@ const AddBill = () => {
         </form>
       </div>
       {loading && <div id="loading"></div>}
+      {firstLoading && <div id="loading"></div>}
     </>
   );
 };

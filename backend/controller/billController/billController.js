@@ -5,6 +5,7 @@ const Bill = require("../../models/bill");
 const newBill = async (req, res) => {
   const { items } = req.body;
   const { company } = req.body;
+  const { invoiceNo } = req.body;
   const totalNumbers = [];
   const total = () => {
     items.map((item) => totalNumbers.push(item.Total));
@@ -18,15 +19,8 @@ const newBill = async (req, res) => {
   const user = req.user;
   const userCredential = await UserCredentials.findOne({ user });
 
-  const lastInvoice = await Bill.findOne({ user })
-    .sort("-createdAt")
-    .select("invoiceNo");
-  let invoiceNo = 1;
-  if (lastInvoice) {
-    invoiceNo = lastInvoice.invoiceNo + 1;
-  }
-
   const data = {
+    invoiceNo,
     user,
     userCredential,
     company,
@@ -35,7 +29,6 @@ const newBill = async (req, res) => {
     SGST: Math.floor(SGST),
     CGST: Math.floor(CGST),
     ToatalInvoiceAmount: Math.floor(ToatalInvoiceAmount),
-    invoiceNo,
   };
   try {
     await Bill.newBill(data);
@@ -88,6 +81,13 @@ const invoiceNo = async (req, res) => {
   const user = req.user;
 
   try {
+    const bill = await Bill.findOne({ user }).sort({ createdAt: -1 });
+    let invoiceNo = 1;
+
+    if (bill) {
+      invoiceNo = bill.invoiceNo + 1;
+    }
+    res.status(200).json({ invoiceNo });
   } catch (err) {
     res.status(400).json({ msg: err.message });
   }
